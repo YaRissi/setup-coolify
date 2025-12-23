@@ -1,0 +1,38 @@
+{
+  "name": "setup-coolify",
+  "version": "1.0.0",
+  "description": "GitHub Action for Coolify CLI",
+  "main": "main.js",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/exec": "^1.0.4",
+    "@actions/tool-cache": "^1.5.5",
+    "@octokit/rest": "^21.0.2"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
+    "eslint": "^9.15.0"
+  },
+  "scripts": {
+    "lint": "eslint main.js",
+    "test": "npm install; npm run lint",
+    "package": "ncc build main.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YaRissi/setup-coolify.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "Coolify",
+    "CI/CD",
+    "deployment",
+    "cloud"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YaRissi/setup-coolify/issues"
+  },
+  "homepage": "https://github.com/YaRissi/setup-coolify#readme"
+}
