@@ -10893,7 +10893,7 @@ async function getRecentReleases(count = 5) {
             repo: 'coolify-cli',
             per_page: count
         });
-        return response.data.map(release => release.name);
+        return response.data.map(release => release.tag_name);
     } catch (error) {
         core.warning(`Failed to fetch recent releases: ${error.message}`);
         return [fallbackVersion];
@@ -10941,7 +10941,11 @@ async function downloadCoolify(version, type, architecture) {
 
     try {
         const coolifyDownload = await tc.downloadTool(downloadURL);
-        return tc.extractTar(coolifyDownload);
+        if (extension === 'zip') {
+            return tc.extractZip(coolifyDownload);
+        } else {
+            return tc.extractTar(coolifyDownload);
+        }
     } catch (error) {
         core.warning(`Failed to download coolify v${version}: ${error.message}`);
         throw new Error(`Download failed for version ${version}: ${error.message}`);
@@ -10985,10 +10989,10 @@ async function run() {
 
         if ((!version) || (version.toLowerCase() === 'latest')) {
             version = await octokit.repos.getLatestRelease({
-                owner: 'digitalocean',
-                repo: 'doctl'
+                owner: 'coollabsio',
+                repo: 'coolify-cli'
             }).then(result => {
-                return result.data.name;
+                return result.data.tag_name;
             }).catch(error => {
                 // GitHub rate-limits are by IP address and runners can share IPs.
                 // This mostly effects macOS where the pool of runners seems limited.
@@ -11000,9 +11004,10 @@ Failed to retrieve latest version; falling back to: ${fallbackVersion}`);
             });
             requestedVersion = 'latest';
         }
-        if (version.charAt(0) === 'v') {
-            version = version.substr(1);
+        if (version && version.charAt(0) === 'v') {
+            version = version.substring(1);
         }
+        requestedVersion = version;
 
         var path = tc.find("coolify", version);
         var actualVersion = version;

@@ -58,7 +58,7 @@ jobs:
       - name: Verify installation of correct version
         run: |
           VERSION=$(coolify version | head -1 | cut -f3 -d' ' | cut -f1 -d'-')
-          if [ "$VERSION" != "v1.3.0" ]; then exit 1; fi
+          if [ "$VERSION" != "1.3.0" ]; then exit 1; fi
 
       - name: Verify log-in
         run: coolify context verify
@@ -78,7 +78,7 @@ jobs:
       - name: Verify installation of correct version
         run: |
           $VERSION = (coolify version | head -1 | cut -f3 -d' ' | cut -f1 -d'-')
-          If (-NOT  ($VERSION -eq "v1.3.0")) { exit 1 }
+          If (-NOT  ($VERSION -eq "1.3.0")) { exit 1 }
 
       - name: Verify log-in
         run: coolify context verify
