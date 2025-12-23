@@ -1,0 +1,19 @@
+name: "GitHub Action for Coolify CLI"
+description: "Use coolify to manage your Coolify resources."
+author: "YaRissi"
+branding:
+  icon: "cloud"
+  color: "blue"
+inputs:
+  version:
+    description: "Version of coolify to install"
+    default: "latest"
+  token:
+    description: "Coolify API Token"
+    default: ""
+  url:
+    description: "Coolify Instance URL"
+    default: "https://app.coolify.io"
+runs:
+  using: "node20"
+  main: "dist/index.js"
