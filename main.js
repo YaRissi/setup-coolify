@@ -159,7 +159,7 @@ Failed to retrieve latest version; falling back to: ${fallbackVersion}`);
             url = fallbackURL;
         }
         core.setSecret(token);
-        await exec.exec('coolify context add actions-context ' + token + ' ' + url + ' --default --force');
+        await exec.exec('coolify context add actions-context ' + url + ' ' + token + ' --default --force');
         core.info('>>> Successfully logged into coolify');
     }
     catch (error) {
