@@ -5,7 +5,7 @@ const { Octokit } = require("@octokit/rest");
 
 const baseDownloadURL = "https://github.com/coollabsio/coolify-cli/releases/download";
 const fallbackURL = "https://app.coolify.io";
-const fallbackVersion = "1.4.0";
+const fallbackVersion = "1.5.0";
 const octokit = new Octokit();
 
 async function getRecentReleases(count = 5) {
